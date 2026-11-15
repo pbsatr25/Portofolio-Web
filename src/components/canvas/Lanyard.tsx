@@ -6,7 +6,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { stepSpring, stretchTo, swingTo } from "@/lib/lanyard";
 
-// Interactive 3D ID badge for the About photo, from the Blender model public/media/pbs-lanyard.glb (card photo
+// Interactive 3D ID badge for the About photo, from the Blender model public/models/pbs-lanyard.glb (card photo
 // re-encoded to JPEG from art/assets/Lanyard/pbs_lanyard.glb). The strap is stiff: the whole badge swings as one
 // damped pendulum around the top of the strap, and the card twists a little on its swivel. Motion: src/lib/lanyard.ts.
 // The real <img> with alt stays in the page (PhotoLanyard). Nothing allocates inside the frame loop.
@@ -14,7 +14,7 @@ import { stepSpring, stretchTo, swingTo } from "@/lib/lanyard";
 // frame: the photo box; the camera is fitted so the card at rest covers it, whatever the canvas size.
 type Props = { frame: RefObject<HTMLElement | null>; onReady: () => void };
 
-const MODEL = "/media/pbs-lanyard.glb";
+const MODEL = "/models/pbs-lanyard.glb";
 const CARD_H = 1.12; // Card_Body height in the model (metres)
 const SCALE = 0.575; // card height relative to the photo frame (0.5 + 15%); small enough for the strap to show
 const DROP = 0.22; // card centre sits this far (× frame height) below the frame centre, leaving room for the strap

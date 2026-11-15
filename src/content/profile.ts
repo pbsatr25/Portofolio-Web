@@ -1,7 +1,11 @@
 // Single source for page copy, JSON-LD, sitemap and (later) the RAG corpus. Copy: PRD §Konten per section.
 
-// TODO(PBS): final domain (PRD open question). Set NEXT_PUBLIC_SITE_URL in the hosting env.
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+// Public origin. NEXT_PUBLIC_SITE_URL overrides it (e.g. a custom domain); otherwise production builds use the
+// Vercel address and local dev uses localhost. Baked in at build time, so redeploy after changing the variable.
+const defaultSiteUrl = process.env.NODE_ENV === "production" ? "https://pbsatr.vercel.app" : "http://localhost:3000";
+export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || defaultSiteUrl).replace(/\/$/, "");
+
+export const siteTitle = "Prihastomo Budi Satrio - Software Engineering Portofolio Website";
 
 export const profile = {
   name: "Prihastomo Budi Satrio",

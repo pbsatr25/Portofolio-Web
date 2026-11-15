@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Host_Grotesk, Silkscreen } from "next/font/google";
-import { profile, siteUrl } from "@/content/profile";
+import { profile, siteTitle, siteUrl } from "@/content/profile";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import "./globals.css";
 
@@ -13,7 +13,7 @@ export const ensureStatic = "navigation";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${profile.name} — ${profile.jobTitle}`,
+    default: siteTitle,
     template: `%s — ${profile.name}`,
   },
   description: profile.description,
