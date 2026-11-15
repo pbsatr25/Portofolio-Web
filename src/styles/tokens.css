@@ -1,0 +1,62 @@
+/* Cobalt theme tokens (Figma page FIX). Only place hex values are allowed. */
+@theme {
+  --color-*: initial;
+  --color-bg: #e4e4e1;
+  --color-surface: #efefec;
+  --color-ink: #111111;
+  --color-ink-muted: #55554f;
+  --color-accent: #3b5bff;
+  --color-on-accent: #ffffff; /* deviation from Figma (#111) for small text, WCAG AA */
+  --color-accent-on-dark: #3b5bff;
+  --color-dark: #121212;
+  --color-dark-raised: #1e1e1d;
+  --color-on-dark: #f2f2ef;
+  --color-on-dark-muted: #a3a39e;
+  --color-line: #cbcbc7;
+  --color-dark-line: #2e2e2c;
+  --color-photo-bg: #1d1d1d;
+
+  --container-page: 1440px;
+
+  /* Type scale: 390 → 1440 via clamp(). */
+  --text-wordmark: clamp(104px, 18.2px + 22vw, 335px);
+  --text-wordmark--line-height: 0.86;
+  --text-wordmark--letter-spacing: -0.05em;
+  --text-mega: clamp(104px, 56.46px + 12.19vw, 232px);
+  --text-mega--line-height: 0.86;
+  --text-mega--letter-spacing: -0.05em;
+  --text-stack-word: clamp(40px, 7.31px + 8.381vw, 128px);
+  --text-stack-word--line-height: 0.875;
+  --text-stack-word--letter-spacing: -0.04em;
+  --text-marquee: clamp(56px, 32.23px + 6.095vw, 120px);
+  --text-marquee--line-height: 0.967;
+  --text-marquee--letter-spacing: -0.03em;
+  --text-statement: clamp(40px, 22.17px + 4.571vw, 88px);
+  --text-statement--line-height: 1;
+  --text-statement--letter-spacing: -0.03em;
+  --text-heading: clamp(36px, 25.6px + 2.667vw, 64px);
+  --text-heading--line-height: 0.97;
+  --text-heading--letter-spacing: -0.03em;
+  --text-pixel-lg: clamp(24px, 21.03px + 0.762vw, 32px);
+  --text-pixel-lg--line-height: 1.125;
+  --text-pixel-xl: clamp(64px, 52.11px + 3.048vw, 96px);
+  --text-pixel-xl--line-height: 1;
+  --text-lead: clamp(20px, 18.51px + 0.381vw, 24px);
+  --text-lead--line-height: 1.333;
+  --text-lead--letter-spacing: -0.01em;
+  --text-body: clamp(16px, 15.26px + 0.19vw, 18px);
+  --text-body--line-height: 1.5;
+  --text-button: 16px;
+  --text-button--line-height: 1.25;
+  --text-small: 14px;
+  --text-small--line-height: 1.43;
+  --text-pixel: clamp(13px, 12.63px + 0.095vw, 14px);
+  --text-pixel--line-height: 1.43;
+
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@theme inline {
+  --font-text: var(--font-host-grotesk);
+  --font-pixel: var(--font-silkscreen);
+}

@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+!.env.example
+
+# quality tooling
+/playwright-report
+/test-results
+/.lighthouseci
+
+# local source files (reference videos, raw photos): never committed, see AGENTS.md §7
+/art/

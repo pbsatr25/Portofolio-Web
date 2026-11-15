@@ -1,0 +1,12 @@
+.next
+node_modules
+public
+design
+assets
+docs
+package-lock.json
+playwright-report
+test-results
+.lighthouseci
+AGENTS.md
+next-env.d.ts
