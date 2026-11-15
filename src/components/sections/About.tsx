@@ -2,32 +2,42 @@ import Image from "next/image";
 import { about, cvHref, profile } from "@/content/profile";
 import { Button } from "@/components/ui/Button";
 import { PixelDivider } from "@/components/motion/PixelDivider";
+import { PhotoLanyard } from "@/components/canvas/PhotoLanyard";
 
 export function About() {
   return (
-    <section data-stack data-ground="light" id="about" aria-labelledby="about-title" className="relative bg-surface">
+    <section
+      data-stack
+      data-ground="light"
+      id="about"
+      aria-labelledby="about-title"
+      className="relative overflow-x-clip bg-surface"
+    >
       <PixelDivider color="surface" seed={11} />
       <div className="relative z-2 mx-auto flex max-w-page flex-col gap-10 px-5 py-28 xl:flex-row xl:gap-6 xl:px-10 xl:py-48">
-        <div data-photo className="relative aspect-[557/720] w-full shrink-0 overflow-hidden bg-dark xl:w-[38.7%]">
-          <Image
-            src={profile.photo.src}
-            alt={profile.photo.alt}
-            fill
-            sizes="(min-width: 1280px) 557px, 100vw"
-            className="object-cover object-[45%_70%]"
-          />
-          <span aria-hidden>
-            <span data-bite className="absolute top-0 right-0 size-10 bg-surface" />
-            <span data-bite className="absolute top-0 right-10 size-10 bg-surface" />
-            <span data-bite className="absolute top-20 right-0 size-10 bg-accent" />
-            <span data-bite className="absolute bottom-0 left-9 size-10 bg-surface" />
-            <span data-bite className="absolute bottom-10 left-9 size-10 bg-surface" />
-            <span data-bite className="absolute bottom-0 left-19 size-10 bg-surface" />
-          </span>
-          <p className="absolute top-6 left-6 bg-accent px-3 py-2 text-small text-on-accent">{about.photoTag}</p>
-        </div>
+        <PhotoLanyard>
+          <div data-photo className="relative size-full overflow-hidden bg-dark">
+            <Image
+              src={profile.photo.src}
+              alt={profile.photo.alt}
+              fill
+              sizes="(min-width: 1280px) 557px, 100vw"
+              className="object-cover object-[45%_70%]"
+            />
+            <span aria-hidden>
+              <span data-bite className="absolute top-0 right-0 size-10 bg-surface" />
+              <span data-bite className="absolute top-0 right-10 size-10 bg-surface" />
+              <span data-bite className="absolute top-20 right-0 size-10 bg-accent" />
+              <span data-bite className="absolute bottom-0 left-9 size-10 bg-surface" />
+              <span data-bite className="absolute bottom-10 left-9 size-10 bg-surface" />
+              <span data-bite className="absolute bottom-0 left-19 size-10 bg-surface" />
+            </span>
+            <p className="absolute top-6 left-6 bg-accent px-3 py-2 text-small text-on-accent">{about.photoTag}</p>
+          </div>
+        </PhotoLanyard>
 
-        <div className="flex flex-1 flex-col gap-7 xl:pt-2">
+        {/* z-10: the text stays in front of the swinging lanyard */}
+        <div className="relative z-10 flex flex-1 flex-col gap-7 xl:pt-2">
           <h2 id="about-title" className="text-heading font-medium">
             About me
           </h2>

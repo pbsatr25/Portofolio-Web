@@ -49,3 +49,7 @@ next-env.d.ts
 
 # local source files (reference videos, raw photos): never committed, see AGENTS.md §7
 /art/
+
+# AI instructions and project docs: local only, never committed
+/AGENTS.md
+/docs/

@@ -49,9 +49,13 @@ export function Loader() {
         {/* Centre: one tile cycling glyphs while counting, then the portrait, then a row of tiles. */}
         <div className="absolute top-1/2 left-1/2 -translate-1/2">
           <div data-loader-tile className={`relative ${tile}`}>
-            {glyphs.map((g, i) => (
-              <Glyph key={i} rows={g} className={`absolute inset-2.5 size-auto xl:inset-4.5 ${i ? "opacity-0" : ""}`} />
-            ))}
+            {/* glyphs stack inside the tile's padding box (an absolutely positioned <svg> with inset alone
+                would size itself, not stretch, and spill over the tile) */}
+            <div className="absolute inset-2.5 xl:inset-4.5">
+              {glyphs.map((g, i) => (
+                <Glyph key={i} rows={g} className={`absolute inset-0 ${i ? "opacity-0" : ""}`} />
+              ))}
+            </div>
             <Image
               data-loader-portrait
               src="/media/portrait-dither.png"

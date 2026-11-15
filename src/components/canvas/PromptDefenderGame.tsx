@@ -464,13 +464,18 @@ export default function PromptDefenderGame({ onClose }: { onClose: () => void })
       )}
 
       {ended && result && (
-        <div className="absolute inset-0 z-10 flex flex-col justify-end overflow-y-auto bg-dark p-6 md:items-center md:justify-center">
-          <div className="flex w-full max-w-md flex-col gap-5">
-            <p className="font-pixel text-pixel text-on-dark-muted">{copy.eyebrow}</p>
-            <div>
-              <p className="font-pixel text-pixel text-on-dark-muted">score</p>
-              <p className="font-pixel text-pixel-xl">{result.score}</p>
-            </div>
+        // Compact end screen that fits the popup without scrolling: tighter type and spacing on short screens
+        // (height-based variants), buttons side by side. A scroll stays as a last resort on tiny landscape
+        // phones, without a visible scrollbar.
+        <div className="absolute inset-0 z-10 flex flex-col justify-center overflow-y-auto bg-dark p-5 [scrollbar-width:none] md:items-center [&::-webkit-scrollbar]:hidden">
+          <div className="flex w-full max-w-md flex-col gap-4 [@media(max-height:600px)]:gap-3">
+            <p className="flex justify-between font-pixel text-pixel text-on-dark-muted">
+              <span>{copy.eyebrow}</span>
+              <span>score</span>
+            </p>
+            <p className="font-pixel text-pixel-xl leading-none [@media(max-height:600px)]:text-pixel-lg">
+              {result.score}
+            </p>
             <dl className="grid grid-cols-2 border border-dark-line bg-dark-raised">
               {[
                 [result.wave, copy.stats.wave],
@@ -480,32 +485,38 @@ export default function PromptDefenderGame({ onClose }: { onClose: () => void })
               ].map(([value, label], i) => (
                 <div
                   key={String(label)}
-                  className={`flex flex-col-reverse gap-1 p-4 ${i % 2 ? "border-l border-dark-line" : ""} ${i > 1 ? "border-t border-dark-line" : ""}`}
+                  className={`flex flex-col-reverse gap-0.5 px-3 py-2.5 ${i % 2 ? "border-l border-dark-line" : ""} ${i > 1 ? "border-t border-dark-line" : ""}`}
                 >
                   <dt className="text-small text-on-dark-muted">{label}</dt>
-                  <dd className="font-pixel text-pixel-lg">{value}</dd>
+                  <dd className="font-pixel text-pixel-lg leading-tight">{value}</dd>
                 </div>
               ))}
             </dl>
-            <p className="text-lead">{phase === "won" ? copy.won : copy.over}</p>
+            <p className="text-body">{phase === "won" ? copy.won : copy.over}</p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <button
+                type="button"
+                autoFocus
+                onClick={begin}
+                className="flex min-h-11 items-center justify-between gap-2 bg-on-dark px-4 text-button font-medium text-ink"
+              >
+                {copy.again}
+                <span aria-hidden>↻</span>
+              </button>
+              <button
+                type="button"
+                onClick={share}
+                className="flex min-h-11 items-center justify-between gap-2 border border-on-dark px-4 text-button font-medium"
+              >
+                {copied ? copy.copied : copy.copy}
+                <ArrowIcon />
+              </button>
+            </div>
             <button
               type="button"
-              autoFocus
-              onClick={begin}
-              className="flex min-h-12 items-center justify-between bg-on-dark px-5 text-button font-medium text-ink"
+              onClick={onClose}
+              className="min-h-11 self-start text-small text-on-dark-muted underline"
             >
-              {copy.again}
-              <span aria-hidden>↻</span>
-            </button>
-            <button
-              type="button"
-              onClick={share}
-              className="flex min-h-12 items-center justify-between border border-on-dark px-5 text-button font-medium"
-            >
-              {copied ? copy.copied : copy.copy}
-              <ArrowIcon />
-            </button>
-            <button type="button" onClick={onClose} className="self-start text-small text-on-dark-muted underline">
               Close
             </button>
           </div>
